@@ -9,38 +9,188 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ResultRouteImport } from './routes/result'
+import { Route as ManualRouteImport } from './routes/manual'
+import { Route as ManifestRouteImport } from './routes/manifest'
+import { Route as DictionaryRouteImport } from './routes/dictionary'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ReportIdRouteImport } from './routes/report.$id'
+import { Route as ApiPublicPermissionsRouteImport } from './routes/api/public/permissions'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultRoute = ResultRouteImport.update({
+  id: '/result',
+  path: '/result',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManualRoute = ManualRouteImport.update({
+  id: '/manual',
+  path: '/manual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManifestRoute = ManifestRouteImport.update({
+  id: '/manifest',
+  path: '/manifest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DictionaryRoute = DictionaryRouteImport.update({
+  id: '/dictionary',
+  path: '/dictionary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportIdRoute = ReportIdRouteImport.update({
+  id: '/report/$id',
+  path: '/report/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicPermissionsRoute = ApiPublicPermissionsRouteImport.update({
+  id: '/api/public/permissions',
+  path: '/api/public/permissions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/dictionary': typeof DictionaryRoute
+  '/manifest': typeof ManifestRoute
+  '/manual': typeof ManualRoute
+  '/result': typeof ResultRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/report/$id': typeof ReportIdRoute
+  '/api/public/permissions': typeof ApiPublicPermissionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/dictionary': typeof DictionaryRoute
+  '/manifest': typeof ManifestRoute
+  '/manual': typeof ManualRoute
+  '/result': typeof ResultRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/report/$id': typeof ReportIdRoute
+  '/api/public/permissions': typeof ApiPublicPermissionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/dictionary': typeof DictionaryRoute
+  '/manifest': typeof ManifestRoute
+  '/manual': typeof ManualRoute
+  '/result': typeof ResultRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/report/$id': typeof ReportIdRoute
+  '/api/public/permissions': typeof ApiPublicPermissionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/dictionary'
+    | '/manifest'
+    | '/manual'
+    | '/result'
+    | '/sitemap.xml'
+    | '/report/$id'
+    | '/api/public/permissions'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/dictionary'
+    | '/manifest'
+    | '/manual'
+    | '/result'
+    | '/sitemap.xml'
+    | '/report/$id'
+    | '/api/public/permissions'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/dictionary'
+    | '/manifest'
+    | '/manual'
+    | '/result'
+    | '/sitemap.xml'
+    | '/report/$id'
+    | '/api/public/permissions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
+  DictionaryRoute: typeof DictionaryRoute
+  ManifestRoute: typeof ManifestRoute
+  ManualRoute: typeof ManualRoute
+  ResultRoute: typeof ResultRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ReportIdRoute: typeof ReportIdRoute
+  ApiPublicPermissionsRoute: typeof ApiPublicPermissionsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/result': {
+      id: '/result'
+      path: '/result'
+      fullPath: '/result'
+      preLoaderRoute: typeof ResultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manual': {
+      id: '/manual'
+      path: '/manual'
+      fullPath: '/manual'
+      preLoaderRoute: typeof ManualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manifest': {
+      id: '/manifest'
+      path: '/manifest'
+      fullPath: '/manifest'
+      preLoaderRoute: typeof ManifestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dictionary': {
+      id: '/dictionary'
+      path: '/dictionary'
+      fullPath: '/dictionary'
+      preLoaderRoute: typeof DictionaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +198,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/report/$id': {
+      id: '/report/$id'
+      path: '/report/$id'
+      fullPath: '/report/$id'
+      preLoaderRoute: typeof ReportIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/permissions': {
+      id: '/api/public/permissions'
+      path: '/api/public/permissions'
+      fullPath: '/api/public/permissions'
+      preLoaderRoute: typeof ApiPublicPermissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
+  DictionaryRoute: DictionaryRoute,
+  ManifestRoute: ManifestRoute,
+  ManualRoute: ManualRoute,
+  ResultRoute: ResultRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ReportIdRoute: ReportIdRoute,
+  ApiPublicPermissionsRoute: ApiPublicPermissionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
