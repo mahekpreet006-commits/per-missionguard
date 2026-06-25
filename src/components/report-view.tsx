@@ -278,3 +278,40 @@ function Stat({
     </div>
   );
 }
+
+/** Lightweight SVG donut chart (no external chart lib). */
+function DonutChart({
+  segments,
+}: {
+  segments: { name: string; value: number; cat: string }[];
+}) {
+  const total = segments.reduce((s, x) => s + x.value, 0) || 1;
+  const radius = 60;
+  const circ = 2 * Math.PI * radius;
+  let offset = 0;
+
+  return (
+    <svg viewBox="0 0 160 160" className="h-40 w-40 -rotate-90">
+      <circle cx="80" cy="80" r={radius} fill="none" stroke="var(--muted)" strokeWidth="20" />
+      {segments.map((s) => {
+        const len = (s.value / total) * circ;
+        const dash = `${len} ${circ - len}`;
+        const el = (
+          <circle
+            key={s.cat}
+            cx="80"
+            cy="80"
+            r={radius}
+            fill="none"
+            stroke={CHART_COLORS[s.cat] ?? "var(--chart-5)"}
+            strokeWidth="20"
+            strokeDasharray={dash}
+            strokeDashoffset={-offset}
+          />
+        );
+        offset += len;
+        return el;
+      })}
+    </svg>
+  );
+}
