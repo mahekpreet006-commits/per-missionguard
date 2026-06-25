@@ -84,13 +84,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Analyze the privacy and security risk of any mobile app from its permissions. Real rule-based scoring, dangerous combination detection and saved reports.",
       },
-      { property: "og:title", content: "PermissionGuard" },
+      { property: "og:title", content: "PermissionGuard — Mobile App Permission & Privacy Risk Analyzer" },
       {
         property: "og:description",
         content: "Mobile App Permission & Privacy Risk Analyzer.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "PermissionGuard — Mobile App Permission & Privacy Risk Analyzer" },
+      { name: "description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
+      { property: "og:description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
+      { name: "twitter:description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/10964207-69a8-42da-9059-96c405463dc2/id-preview-b20f6f05--3528a1ed-10fc-4c88-93ea-be6044fe2880.lovable.app-1782389233153.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/10964207-69a8-42da-9059-96c405463dc2/id-preview-b20f6f05--3528a1ed-10fc-4c88-93ea-be6044fe2880.lovable.app-1782389233153.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
