@@ -36,8 +36,6 @@ const saveSchema = z.object({
 export const saveReport = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => saveSchema.parse(data))
   .handler(async ({ data }): Promise<{ id: string }> => {
-    const { getPublicSupabase } = await import("./reports.server");
-
     let result: AnalysisResult;
     if (data.analysisMode === "manifest") {
       const { recognized, ignored } = parsePermissionInput(data.input ?? "");
@@ -60,7 +58,10 @@ export const saveReport = createServerFn({ method: "POST" })
       });
     }
 
-    const supabase = getPublicSupabase();
+    // Writes go through the privileged server client (bypasses RLS).
+    // Public anon INSERT is intentionally disallowed at the database level.
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const supabase = supabaseAdmin;
     const { data: inserted, error } = await supabase
       .from("reports")
       .insert({
@@ -115,8 +116,10 @@ export const getReport = createServerFn({ method: "GET" })
 export const deleteReport = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => z.object({ id: z.string().uuid() }).parse(data))
   .handler(async ({ data }): Promise<{ ok: true }> => {
-    const { getPublicSupabase } = await import("./reports.server");
-    const supabase = getPublicSupabase();
+    // Deletes go through the privileged server client (bypasses RLS).
+    // Public anon DELETE is intentionally disallowed at the database level.
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const supabase = supabaseAdmin;
     const { error } = await supabase.from("reports").delete().eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true };
