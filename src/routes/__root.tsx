@@ -79,20 +79,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PermissionGuard — Mobile App Permission & Privacy Risk Analyzer" },
+      { title: "PermissionGuard Mobile App Permission & Risk Analyzer" },
       {
         name: "description",
         content:
           "Analyze the privacy and security risk of any mobile app from its permissions. Real rule-based scoring, dangerous combination detection and saved reports.",
       },
-      { property: "og:title", content: "PermissionGuard — Mobile App Permission & Privacy Risk Analyzer" },
+      { property: "og:title", content: "PermissionGuard Mobile App Permission & Risk Analyzer" },
       {
         property: "og:description",
         content: "Mobile App Permission & Privacy Risk Analyzer.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "PermissionGuard — Mobile App Permission & Privacy Risk Analyzer" },
+      { name: "twitter:title", content: "PermissionGuard Mobile App Permission & Risk Analyzer" },
       { name: "description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
       { property: "og:description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
       { name: "twitter:description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
