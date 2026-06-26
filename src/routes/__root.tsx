@@ -98,6 +98,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
       { property: "og:image", content: ogAsset.url },
       { name: "twitter:image", content: ogAsset.url },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1153804b-01ea-43a3-8925-c3698f2195d8/id-preview-dab82e62--3528a1ed-10fc-4c88-93ea-be6044fe2880.lovable.app-1782454719674.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/1153804b-01ea-43a3-8925-c3698f2195d8/id-preview-dab82e62--3528a1ed-10fc-4c88-93ea-be6044fe2880.lovable.app-1782454719674.png" },
     ],
     links: [
       { rel: "icon", type: "image/png", href: logoAsset.url },
