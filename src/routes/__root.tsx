@@ -11,7 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { ShieldCheck } from "lucide-react";
+import logoAsset from "../assets/logo.png.asset.json";
+import ogAsset from "../assets/og.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -95,10 +96,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
       { property: "og:description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
       { name: "twitter:description", content: "PermissionGuard analyzes mobile app permissions to reveal privacy and security risks." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/10964207-69a8-42da-9059-96c405463dc2/id-preview-b20f6f05--3528a1ed-10fc-4c88-93ea-be6044fe2880.lovable.app-1782389233153.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/10964207-69a8-42da-9059-96c405463dc2/id-preview-b20f6f05--3528a1ed-10fc-4c88-93ea-be6044fe2880.lovable.app-1782389233153.png" },
+      { property: "og:image", content: ogAsset.url },
+      { name: "twitter:image", content: ogAsset.url },
     ],
     links: [
+      { rel: "icon", type: "image/png", href: logoAsset.url },
+      { rel: "apple-touch-icon", sizes: "512x512", href: logoAsset.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -160,9 +163,13 @@ function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-2 font-semibold">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/15 text-primary ring-1 ring-primary/30">
-            <ShieldCheck className="h-5 w-5" />
-          </span>
+          <img
+            src={logoAsset.url}
+            alt="PermissionGuard logo"
+            width={36}
+            height={36}
+            className="h-9 w-9 rounded-lg object-contain"
+          />
           <span className="text-lg tracking-tight">
             Permission<span className="text-primary">Guard</span>
           </span>
