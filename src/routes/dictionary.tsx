@@ -20,6 +20,26 @@ export const Route = createFileRoute("/dictionary")({
         name: "description",
         content: "What each Android permission allows, the data it exposes and why it can be dangerous.",
       },
+      { property: "og:title", content: "Permission Dictionary — PermissionGuard" },
+      {
+        property: "og:description",
+        content: "What each Android permission allows, the data it exposes and why it can be dangerous.",
+      },
+      { property: "og:url", content: "https://per-missionguard.lovable.app/dictionary" },
+    ],
+    links: [{ rel: "canonical", href: "https://per-missionguard.lovable.app/dictionary" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Permission Dictionary",
+          url: "https://per-missionguard.lovable.app/dictionary",
+          description:
+            "A knowledge base of every supported permission: what it allows, the data it can access and why it may be dangerous.",
+        }),
+      },
     ],
   }),
   component: DictionaryPage,
@@ -66,6 +86,7 @@ function DictionaryPage() {
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search permissions…"
+            aria-label="Search permissions"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="pl-9"
@@ -91,7 +112,7 @@ function DictionaryPage() {
             <CardContent className="p-4">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
-                  <h3 className="font-semibold">{p.label}</h3>
+                  <h2 className="font-semibold">{p.label}</h2>
                   <code className="block truncate text-[11px] text-muted-foreground">
                     {p.androidName}
                   </code>

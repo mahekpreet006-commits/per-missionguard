@@ -12,7 +12,22 @@ import type { AnalysisResult } from "@/lib/risk-engine";
 
 export const Route = createFileRoute("/result")({
   head: () => ({
-    meta: [{ title: "Analysis Result — PermissionGuard" }],
+    meta: [
+      { title: "Analysis Result — PermissionGuard" },
+      {
+        name: "description",
+        content:
+          "Your PermissionGuard analysis result: privacy and security risk score, dangerous permission combinations and a detailed permission breakdown.",
+      },
+      { property: "og:title", content: "Analysis Result — PermissionGuard" },
+      {
+        property: "og:description",
+        content:
+          "Your PermissionGuard analysis result: risk score, dangerous combinations and a detailed permission breakdown.",
+      },
+      { property: "og:url", content: "https://per-missionguard.lovable.app/result" },
+    ],
+    links: [{ rel: "canonical", href: "https://per-missionguard.lovable.app/result" }],
   }),
   component: ResultPage,
 });

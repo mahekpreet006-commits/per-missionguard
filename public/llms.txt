@@ -1,0 +1,13 @@
+# PermissionGuard
+
+> PermissionGuard is a mobile app permission and privacy risk analyzer. It scores Android-style permissions with a real rule-based engine, flags dangerous permission combinations and reveals exactly what personal data an app can access.
+
+PermissionGuard is an educational tool for understanding the privacy and security implications of the permissions a mobile app requests. It is not affiliated with Google or Android.
+
+## Pages
+
+- [Home](/): Overview of PermissionGuard and how it analyzes app permission risk.
+- [Manual Analysis](/manual): Pick permissions from grouped, categorized cards and instantly score the risk.
+- [Manifest Analysis](/manifest): Paste a raw manifest or permission list to parse, normalize and analyze it.
+- [Permission Dictionary](/dictionary): A knowledge base of each permission — what it allows, the data it exposes and why it can be dangerous.
+- [Reports Dashboard](/dashboard): Browse, search and filter saved permission analysis reports.
