@@ -27,8 +27,51 @@ export const Route = createFileRoute("/")({
         content:
           "Find out how risky a mobile app is from its permissions. Real rule-based privacy and security scoring with dangerous combination detection.",
       },
-      { property: "og:title", content: "PermissionGuard" },
-      { property: "og:description", content: "Mobile App Permission & Privacy Risk Analyzer." },
+      { property: "og:title", content: "PermissionGuard — Mobile App Risk Analyzer" },
+      {
+        property: "og:description",
+        content:
+          "Analyze mobile app permissions with a real rule-based engine — privacy and security scoring plus dangerous combination detection.",
+      },
+      { property: "og:url", content: "https://per-missionguard.lovable.app/" },
+    ],
+    links: [{ rel: "canonical", href: "https://per-missionguard.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "PermissionGuard",
+          url: "https://per-missionguard.lovable.app/",
+          description:
+            "Mobile app permission and privacy risk analyzer with rule-based scoring.",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "PermissionGuard",
+          url: "https://per-missionguard.lovable.app/",
+          logo: "https://per-missionguard.lovable.app/favicon-32.png",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "PermissionGuard",
+          applicationCategory: "SecurityApplication",
+          operatingSystem: "Web",
+          url: "https://per-missionguard.lovable.app/",
+          description:
+            "Analyze Android-style app permissions with a rule-based engine that scores privacy and security risk and flags dangerous permission combinations.",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        }),
+      },
     ],
   }),
   component: Index,
