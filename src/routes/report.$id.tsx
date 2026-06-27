@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowLeft, Loader2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -22,7 +21,33 @@ import { getReport, deleteReport, type ReportRow } from "@/lib/reports.functions
 import type { RiskLevel } from "@/lib/permissions";
 
 export const Route = createFileRoute("/report/$id")({
-  head: () => ({ meta: [{ title: "Saved Report — PermissionGuard" }] }),
+  loader: async ({ params }) => {
+    const report = await getReport({ data: { id: params.id } });
+    return { report };
+  },
+  head: ({ params, loaderData }) => {
+    const name = loaderData?.report?.app_name;
+    const baseUrl = `https://per-missionguard.lovable.app/report/${params.id}`;
+    const title = name
+      ? `${name} Permission Risk Report — PermissionGuard`.slice(0, 60)
+      : "Saved Report — PermissionGuard";
+    const description = name
+      ? `Permission risk report for ${name}: privacy and security score, dangerous permission combinations and the full list of detected permissions.`.slice(
+          0,
+          160,
+        )
+      : "A saved PermissionGuard report: privacy and security risk score, dangerous permission combinations and detected permissions.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: baseUrl },
+      ],
+      links: [{ rel: "canonical", href: baseUrl }],
+    };
+  },
   component: ReportDetailPage,
 });
 
@@ -43,15 +68,12 @@ function rowToViewData(r: ReportRow): ReportViewData {
 
 function ReportDetailPage() {
   const { id } = Route.useParams();
+  const { report } = Route.useLoaderData();
   const navigate = useNavigate();
-  const fetchReport = useServerFn(getReport);
   const remove = useServerFn(deleteReport);
   const [deleting, setDeleting] = useState(false);
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["report", id],
-    queryFn: () => fetchReport({ data: { id } }),
-  });
+  const data = report;
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -64,14 +86,6 @@ function ReportDetailPage() {
       setDeleting(false);
     }
   };
-
-  if (isLoading) {
-    return (
-      <div className="flex min-h-[40vh] items-center justify-center">
-        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-      </div>
-    );
-  }
 
   if (!data) {
     return (
@@ -86,6 +100,9 @@ function ReportDetailPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
+      <h1 className="mb-4 text-2xl font-bold tracking-tight">
+        {data.app_name} — Permission Risk Report
+      </h1>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <Button asChild variant="ghost" size="sm">
           <Link to="/dashboard">
