@@ -31,7 +31,11 @@ export const Route = createFileRoute("/dashboard")({
     meta: [
       { title: "Reports Dashboard — PermissionGuard" },
       { name: "description", content: "View, search, filter and manage saved permission analysis reports." },
+      { property: "og:title", content: "Reports Dashboard — PermissionGuard" },
+      { property: "og:description", content: "View, search, filter and manage saved permission analysis reports." },
+      { property: "og:url", content: "https://per-missionguard.lovable.app/dashboard" },
     ],
+    links: [{ rel: "canonical", href: "https://per-missionguard.lovable.app/dashboard" }],
   }),
   component: DashboardPage,
 });
@@ -104,6 +108,7 @@ function DashboardPage() {
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search by app name…"
+            aria-label="Search reports by app name"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9"
