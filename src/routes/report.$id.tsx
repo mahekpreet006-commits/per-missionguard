@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { ArrowLeft, Loader2, Trash2 } from "lucide-react";
+import { ArrowLeft, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
